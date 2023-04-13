@@ -7,6 +7,7 @@ async function getCars() {
 
 async function getCar(id: number) {
   const data = await prisma.cars.findFirst({ where: { id } });
+  await prisma.$disconnect();
   return data;
 }
 
