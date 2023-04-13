@@ -8,11 +8,20 @@ datasource db {
 }
 
 model cars {
-  id           Int       @id @default(autoincrement())
+  id           Int         @id @default(autoincrement())
   model        String
-  licensePlate String    @unique
+  licensePlate String      @unique
   year         Int
   color        String
-  createAt     DateTime? @default(now()) @db.Timestamp(6)
+  createAt     DateTime?   @default(now()) @db.Timestamp(6)
+  categoryId   Int?
+  category     categories? @relation(fields: [categoryId], references: [id])
 }
+// categoryId int NOT NULL REFERENCES categories(id)
+// cars N:1 category
 
+model categories {
+  id   Int    @id @default(autoincrement())
+  name String
+  cars cars[]
+}
