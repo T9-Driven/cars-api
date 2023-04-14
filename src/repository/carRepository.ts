@@ -1,6 +1,7 @@
 import { cars } from "@prisma/client";
 import prisma from "../config/database.js";
 import { CarInput } from "../protocols.js";
+import { exclude } from "../utils/excludeObjectKeysPrisma.js";
 
 async function getCars() {
   const data = await prisma.cars.findMany({
@@ -22,26 +23,18 @@ async function getCars() {
   return data;
 }
 
+
+
+
 async function getCar(id: number) {
   const data = await prisma.cars.findFirst({
     where: { id },
-    select: {
-      id: true,
-      model: true,
-      licensePlate: true,
-      year: true,
-      color: true,
-      createAt: false,
-      categoryId: false,
-      category: {
-        select: {
-          name: true,
-        },
-      },
-    },
   });
   await prisma.$disconnect();
-  return data;
+
+  const newData = exclude(data, ["categoryId", "createAt"])
+
+  return newData;
 }
 
 async function getCarWithLicensePlate(licensePlate: string): Promise<cars> {
