@@ -8,7 +8,12 @@ async function getCars(): Promise<cars[]> {
 }
 
 async function getCar(id: number): Promise<cars> {
-  const data = await prisma.cars.findFirst({ where: { id } });
+  const data = await prisma.cars.findFirst({ 
+    where: { id },
+    include: {
+      category: true
+    }
+  });
   await prisma.$disconnect();
   return data;
 }
