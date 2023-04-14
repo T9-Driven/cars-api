@@ -2,8 +2,23 @@ import { cars } from "@prisma/client";
 import prisma from "../config/database.js";
 import { CarInput } from "../protocols.js";
 
-async function getCars(): Promise<cars[]> {
-  const data = await prisma.cars.findMany();
+async function getCars() {
+  const data = await prisma.cars.findMany({
+    select: {
+      id: true,
+      model: true,
+      licensePlate: true,
+      year: true,
+      color: true,
+      createAt: false,
+      categoryId: false,
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
   return data;
 }
 
