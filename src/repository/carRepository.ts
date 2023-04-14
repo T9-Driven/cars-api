@@ -7,10 +7,17 @@ async function getCars(): Promise<cars[]> {
   return data;
 }
 
-async function getCar(id: number): Promise<cars> {
+async function getCar(id: number) {
   const data = await prisma.cars.findFirst({
     where: { id },
-    include: {
+    select: {
+      id: true,
+      model: true,
+      licensePlate: true,
+      year: true,
+      color: true,
+      createAt: false,
+      categoryId: false,
       category: {
         select: {
           name: true,
