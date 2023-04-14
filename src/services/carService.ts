@@ -38,12 +38,17 @@ async function updateCar(id: number, car: CarInput) {
   await carRepository.updateCar(id, car);
 }
 
+async function createOrUpdateCar(car: CarInput) {
+  await carRepository.createOrUpdateCar(car);
+}
+
 const carService = {
   getCars,
   getCar,
   createCar,
   deleteCar,
   updateCar,
+  createOrUpdateCar,
 };
 
 export default carService;

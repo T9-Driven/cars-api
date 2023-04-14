@@ -30,7 +30,7 @@ async function createCar(req: Request, res: Response) {
   const { model, licensePlate, year, color } = req.body as CarInput;
 
   try {
-    await carService.createCar({model, licensePlate, year, color});
+    await carService.createCar({ model, licensePlate, year, color });
     res.sendStatus(httpStatus.CREATED);
   } catch (e) {
     console.log(e);
@@ -70,12 +70,23 @@ async function updateCar(req: Request, res: Response) {
   }
 }
 
+async function createOrUpdateCar(req: Request, res: Response) {
+  const car = req.body as CarInput;
+  try {
+    await carService.createOrUpdateCar(car);
+    res.send(httpStatus.OK);
+  } catch (e) {
+    return res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  }
+}
+
 const carController = {
   getAllCars,
   getSpecificCar,
   createCar,
   deleteCar,
   updateCar,
+  createOrUpdateCar
 };
 
 export default carController;

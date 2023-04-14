@@ -64,6 +64,16 @@ async function updateCar(id: number, car: CarInput) {
   await prisma.cars.update({ where: { id }, data: car });
 }
 
+async function createOrUpdateCar(car: CarInput) {
+  const { licensePlate } = car;
+
+  await prisma.cars.upsert({
+    where: { licensePlate },
+    update: car,
+    create: car,
+  });
+}
+
 const carRepository = {
   getCar,
   getCarWithLicensePlate,
@@ -71,6 +81,7 @@ const carRepository = {
   createCar,
   deleteCar,
   updateCar,
+  createOrUpdateCar,
 };
 
 export default carRepository;
