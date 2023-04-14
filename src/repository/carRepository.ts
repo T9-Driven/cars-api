@@ -23,17 +23,19 @@ async function getCars() {
   return data;
 }
 
-
-
-
 async function getCar(id: number) {
   const data = await prisma.cars.findFirst({
     where: { id },
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
   await prisma.$disconnect();
-
-  const newData = exclude(data, ["categoryId", "createAt"])
-
+  const newData = exclude(data, ["categoryId", "createAt"]);
   return newData;
 }
 
