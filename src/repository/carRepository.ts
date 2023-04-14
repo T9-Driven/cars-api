@@ -3,7 +3,7 @@ import prisma from "../config/database.js";
 import { CarInput } from "../protocols.js";
 import { exclude } from "../utils/excludeObjectKeysPrisma.js";
 
-async function getCars() {
+async function getCars(): Promise<cars[]> {
   const data = await prisma.cars.findMany({
     select: {
       id: true,
@@ -20,10 +20,11 @@ async function getCars() {
       },
     },
   });
+
   return data;
 }
 
-async function getCar(id: number) {
+async function getCar(id: number): Promise<cars> {
   const data = await prisma.cars.findFirst({
     where: { id },
     include: {
