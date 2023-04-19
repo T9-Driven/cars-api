@@ -1,4 +1,4 @@
-import categoryRepository from "../repository/categoryRepository.js";
+import categoryRepository from "../repository/categoryRepository";
 
 async function createCategory(name: string) {
   await categoryRepository.createCategory(name);

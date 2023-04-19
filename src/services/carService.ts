@@ -1,7 +1,7 @@
-import notFoundError from "../errors/notFoundError.js";
-import conflictError from "../errors/conflictError.js";
-import carRepository from "../repository/carRepository.js";
-import { CarInput } from "../protocols.js";
+import notFoundError from "../errors/notFoundError";
+import conflictError from "../errors/conflictError";
+import carRepository from "../repository/carRepository";
+import { CarInput } from "../protocols";
 
 async function getCars() {
   const cars = await carRepository.getCars();

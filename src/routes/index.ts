@@ -1,6 +1,6 @@
 import { Router } from "express";
-import carsRouter from "./carsRouter.js";
-import categoriesRouter from "./categoriesRouter.js";
+import carsRouter from "./carsRouter";
+import categoriesRouter from "./categoriesRouter";
 
 const router = Router();
 

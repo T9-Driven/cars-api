@@ -1,8 +1,8 @@
 import httpStatus from "http-status";
 
 import { Request, Response } from "express";
-import carService from "../services/carService.js";
-import { CarInput } from "../protocols.js";
+import carService from "../services/carService";
+import { CarInput } from "../protocols";
 
 async function getAllCars(req: Request, res: Response) {
   try {

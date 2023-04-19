@@ -1,7 +1,7 @@
 import { cars } from "@prisma/client";
-import prisma from "../config/database.js";
-import { CarInput } from "../protocols.js";
-import { exclude } from "../utils/excludeObjectKeysPrisma.js";
+import prisma from "../config/database";
+import { CarInput } from "../protocols";
+import { exclude } from "../utils/excludeObjectKeysPrisma";
 
 async function getCars(): Promise<cars[]> {
   const data = await prisma.cars.findMany({

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import validateSchemaMiddleware from "../middlewares/validateSchemaMiddleware.js";
-import { categorySchema } from "../schemas/categorySchema.js";
-import categoryController from "../controllers/categoryController.js";
+import validateSchemaMiddleware from "../middlewares/validateSchemaMiddleware";
+import { categorySchema } from "../schemas/categorySchema";
+import categoryController from "../controllers/categoryController";
 
 const categoriesRouter = Router();
 
